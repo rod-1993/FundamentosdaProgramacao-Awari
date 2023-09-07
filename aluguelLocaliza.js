@@ -62,6 +62,14 @@ class Funcionario extends Pessoa {
         this.situacao = situacao;
         
     }
+
+    getNome() {
+        return this.nome;
+    }
+    
+    getCPF() {
+        return this.cpf;
+    }
 }
 
 class Cliente extends Pessoa {
@@ -91,7 +99,7 @@ class Promocao {
     }
 }
 
-class Localiza {
+class LocalizaCliente {
     constructor() {
         this.clientes = [];
     }
@@ -113,18 +121,54 @@ class Localiza {
     }
 }
 
-var localiza1 = new Localiza();
+class LocalizaFuncionario {
+    constructor() {
+        this.funcionarios = [];
+    }
+    
+    addFuncionario(funcionario) {
+        this.funcionarios.push(funcionario);
+    }
+
+    getFuncionario(cpf) {
+        return this.funcionarios.filter(funcionario => {
+            if(funcionario.getCPF() == cpf) {
+                return funcionario;
+            }
+        })[0];//o [0] faz retornar o primeiro elemento inserido, buscando pelo CPF
+    }
+
+    getListarFuncionarios() {
+        return this.funcionarios;
+    }
+}
+//Localizar Clientes
+var localizaCliente = new LocalizaCliente();
 var bruno = new Cliente("Bruno", 12345678910, 28, "Rua X", 11981027818, "09/09/99", 12345, "foto.png", 2028, "bruno@provedor.com");
 var arthur = new Cliente("arthur", 12345678911, 28, "Rua A", 11981027818, "09/09/99", 12345, "foto.png", 2028, "bruno@provedor.com");
 var claudio = new Cliente("claudio", 12345678912, 28, "Rua X", 11981027818, "09/09/99", 12345, "foto.png", 2028, "bruno@provedor.com");
 var marcela = new Cliente("marcela", 12345678913, 28, "Rua X", 11981027818, "09/09/99", 12345, "foto.png", 2028, "bruno@provedor.com");
-//console.log(bruno)
 
-localiza1.addCliente(bruno);
-localiza1.addCliente(arthur);
-localiza1.addCliente(claudio);
-localiza1.addCliente(marcela);
+localizaCliente.addCliente(bruno);
+localizaCliente.addCliente(arthur);
+localizaCliente.addCliente(claudio);
+localizaCliente.addCliente(marcela);
 
-console.log(localiza1.getListarClientes());
-console.log(localiza1.getCliente(12345678913));
-console.log(localiza1.getCliente(12345678912).getNome());
+console.log('--------------------------------------------');
+console.log('Segue abaixo a lista de CLientes')
+console.log(localizaCliente.getListarClientes());
+//console.log(localizaCliente.getCliente(12345678913));
+console.log('Segue' + localizaCliente.getCliente(12345678912).getNome());
+console.log('Segue' + localizaCliente.getCliente(12345678911).getNome());
+
+//Localizar Funcionarios
+var localizaFuncionario = new LocalizaFuncionario();
+var adolfo = new Funcionario("Adolfo", 12345678910, 29, "Rua Leviatan", 1198888888, "12/02/2020" ,"R$ 3.000,00" ,12 ,"Em aberto")
+var carlos = new Funcionario("Carlos", 12345678910, 29, "Rua Carrel", 1198888888, "13/02/2020" ,"R$ 4.000,00" ,12 ,"Em aberto")
+
+localizaFuncionario.addFuncionario(adolfo);
+localizaFuncionario.addFuncionario(carlos);
+
+console.log('--------------------------------------------');
+console.log('Segue abaixo a lista de funcionários')
+console.log(localizaFuncionario.getListarFuncionarios());
