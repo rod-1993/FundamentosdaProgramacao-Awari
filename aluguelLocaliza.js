@@ -158,8 +158,8 @@ console.log('--------------------------------------------');
 console.log('Segue abaixo a lista de CLientes')
 console.log(localizaCliente.getListarClientes());
 //console.log(localizaCliente.getCliente(12345678913));
-console.log('Segue' + localizaCliente.getCliente(12345678912).getNome());
-console.log('Segue' + localizaCliente.getCliente(12345678911).getNome());
+//console.log('Segue' + localizaCliente.getCliente(12345678912).getNome());
+
 
 //Localizar Funcionarios
 var localizaFuncionario = new LocalizaFuncionario();
